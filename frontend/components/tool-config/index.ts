@@ -8,13 +8,13 @@ export interface KnowledgeBaseSelectorProps {
   onClose: () => void;
   onConfirm: (selectedKnowledgeBases: KnowledgeBase[]) => void;
   selectedIds: string[];
-  toolType: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search";
+  toolType: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search" | "ragflow_search";
   title?: string;
   maxSelect?: number;
   showCreateButton?: boolean;
   showDeleteButton?: boolean;
   showCheckbox?: boolean;
-  // Dify/iData configuration for fetching knowledge bases
+  // Dify/iData/RAGFlow configuration for fetching knowledge bases
   difyConfig?: {
     serverUrl?: string;
     apiKey?: string;
@@ -25,7 +25,7 @@ export interface KnowledgeBaseSelectorProps {
 
 // Get supported knowledge base sources for a tool type
 export function getKnowledgeBaseSourcesForTool(
-  toolType: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search"
+  toolType: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search" | "ragflow_search"
 ): string[] {
   switch (toolType) {
     case "knowledge_base_search":
@@ -36,6 +36,8 @@ export function getKnowledgeBaseSourcesForTool(
       return ["datamate"];
     case "idata_search":
       return ["idata"];
+    case "ragflow_search":
+      return ["ragflow"];
     default:
       return ["nexent"];
   }

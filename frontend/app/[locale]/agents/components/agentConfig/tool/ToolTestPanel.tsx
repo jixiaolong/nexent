@@ -45,7 +45,7 @@ export interface ToolTestPanelProps {
   /** Callback to remove a knowledge base from selection */
   onRemoveKb?: (index: number, paramIndex: number) => void;
   /** Tool type for KB selection (used to determine parameter name) */
-  toolKbType?: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search" | "haotian_search" | null;
+  toolKbType?: "knowledge_base_search" | "dify_search" | "datamate_search" | "idata_search" | "haotian_search" | "ragflow_search" | null;
   /** Haotian knowledge sets for display name resolution */
   haotianKnowledgeSets?: Array<{
     name: string;
@@ -339,6 +339,8 @@ export default function ToolTestPanel({
       if (toolRequiresKbSelection && selectedKbIds.length > 0) {
         // Determine the correct parameter name based on tool type
         if (tool?.name === "dify_search") {
+          kbSelectionConfig = { dataset_ids: JSON.stringify(selectedKbIds) };
+        } else if (tool?.name === "ragflow_search") {
           kbSelectionConfig = { dataset_ids: JSON.stringify(selectedKbIds) };
         } else if (tool?.name === "haotian_search") {
           // Haotian uses dataset_ids as an array (not JSON string)

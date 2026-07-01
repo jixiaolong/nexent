@@ -1,0 +1,44 @@
+{
+    "code": 0,
+    "data": {
+        "chunks": [
+            {
+                "chunk_id": "c7ca2a7748381e58",
+                "content_ltks": "\u6838\u5fc3 \u75c5 ...",
+                "content_with_weight": "\n\n[\u6838\u5fc3...",
+                "doc_id": "5327eea65fb111f1aef0ff18a4cf3466",
+                "doc_type_kwd": "",
+                "docnm_kwd": "xxxx.txt",
+                "image_id": "",
+                "important_kwd": [
+                    "\u5143\u6c14"
+                ],
+                "kb_id": "061d1ca05f1e11f1aef0ff18a4cf3466",
+                "mom_id": "",
+                "positions": [
+                    [
+                        14,
+                        13,
+                        13,
+                        13,
+                        13
+                    ]
+                ],
+                "row_id": null,
+                "similarity": 5.58,
+                "tag_kwd": [],
+                "term_similarity": 0.57,
+                "vector_similarity": 0.60
+            }
+        ],
+        "doc_aggs": [
+            {
+                "count": 1,
+                "doc_id": "xxx",
+                "doc_name": "demo.txt"
+            }
+        ],
+        "labels": null,
+        "total": 1
+    }
+}

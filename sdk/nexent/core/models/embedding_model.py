@@ -419,7 +419,7 @@ class OpenAICompatibleEmbedding(TextEmbedding):
             logging.error(f"OpenAI API connection test timed out ({timeout} seconds)")
             return []
         except requests.exceptions.ConnectionError:
-            logging.error("OpenAI API connection error, unable to establish connection")
+            logging.error(f"OpenAI API connection error, unable to establish connection {self.api_url} {self.model} {self.api_key} {self.ssl_verify}")
             return []
         except Exception as e:
             logging.error(f"OpenAI API connection test failed: {str(e)}")

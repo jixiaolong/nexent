@@ -1,0 +1,404 @@
+<svg viewBox="0 0 1500 1150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+
+    <!-- Layer background gradients -->
+    <linearGradient id="l1Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="100%" stop-color="#DBEAFE"/>
+    </linearGradient>
+    <linearGradient id="l2Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ECFDF5"/>
+      <stop offset="100%" stop-color="#D1FAE5"/>
+    </linearGradient>
+    <linearGradient id="l3Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F3FF"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </linearGradient>
+    <linearGradient id="l4Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="100%" stop-color="#FEF3C7"/>
+    </linearGradient>
+    <linearGradient id="l5Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+
+    <!-- Node gradients per layer -->
+    <linearGradient id="l1Node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="l2Node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="l3Node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="l4Node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="l5Node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+
+    <!-- Sub-node gradient -->
+    <linearGradient id="subNode" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+
+    <!-- Arrow marker -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B5CF6"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/>
+    </marker>
+
+    <!-- Layer label gradient -->
+    <linearGradient id="labelGrad1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="labelGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="labelGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="labelGrad4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <linearGradient id="labelGrad5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ===== TITLE ===== -->
+  <text x="750" y="35" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1E293B">Nexent 系统架构图</text>
+  <line x1="550" y1="45" x2="950" y2="45" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 1: CLIENT / ACCESS TIER -->
+  <!-- ============================================================ -->
+  <rect x="20" y="65" width="1460" height="110" rx="10" fill="url(#l1Bg)" stroke="#93C5FD" stroke-width="1"/>
+  <rect x="20" y="65" width="8" height="110" rx="4" fill="url(#labelGrad1)"/>
+  <text x="42" y="125" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1E40AF" transform="rotate(-90, 42, 125)">接入层</text>
+
+  <!-- L1 Nodes -->
+  <!-- Web Browser -->
+  <rect x="380" y="82" width="220" height="76" rx="8" fill="url(#l1Node)" filter="url(#shadow)"/>
+  <text x="490" y="108" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">🌐 网页浏览器</text>
+  <text x="490" y="130" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#DBEAFE">桌面端 / 移动端</text>
+  <text x="490" y="148" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#BFDBFE">HTTPS + WSS</text>
+
+  <!-- Next.js Frontend -->
+  <rect x="660" y="82" width="240" height="76" rx="8" fill="url(#l1Node)" filter="url(#shadow)"/>
+  <text x="780" y="108" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">⚛️ Next.js 前端</text>
+  <text x="780" y="130" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#DBEAFE">Node.js 服务 + http-proxy</text>
+  <text x="780" y="148" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#BFDBFE">端口 :3000</text>
+
+  <!-- External Partners -->
+  <rect x="960" y="82" width="200" height="76" rx="8" fill="url(#l1Node)" filter="url(#shadow)"/>
+  <text x="1060" y="108" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">🔌 外部合作伙伴</text>
+  <text x="1060" y="130" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#DBEAFE">REST API 客户端</text>
+  <text x="1060" y="148" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#BFDBFE">Bearer Token 认证</text>
+
+  <!-- L1 arrow: Browser → Frontend -->
+  <line x1="600" y1="120" x2="655" y2="120" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 2: MICROSERVICES TIER -->
+  <!-- ============================================================ -->
+  <rect x="20" y="185" width="1460" height="165" rx="10" fill="url(#l2Bg)" stroke="#6EE7B7" stroke-width="1"/>
+  <rect x="20" y="185" width="8" height="165" rx="4" fill="url(#labelGrad2)"/>
+  <text x="42" y="272" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#065F46" transform="rotate(-90, 42, 272)">微服务层</text>
+
+  <!-- L2 Nodes -->
+  <!-- nexent-data-process -->
+  <rect x="55" y="205" width="215" height="60" rx="8" fill="url(#l2Node)" filter="url(#shadow)"/>
+  <text x="162" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">⚙️ nexent-data-process</text>
+  <text x="162" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#D1FAE5">端口 :5012 · Ray + Celery</text>
+
+  <!-- nexent-config -->
+  <rect x="310" y="205" width="215" height="60" rx="8" fill="url(#l2Node)" filter="url(#shadow)"/>
+  <text x="417" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">📋 nexent-config</text>
+  <text x="417" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#D1FAE5">端口 :5010 · 管理 API</text>
+
+  <!-- nexent-runtime -->
+  <rect x="565" y="205" width="215" height="60" rx="8" fill="url(#l2Node)" filter="url(#shadow)"/>
+  <text x="672" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🚀 nexent-runtime</text>
+  <text x="672" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#D1FAE5">端口 :5014 · 智能体执行</text>
+
+  <!-- nexent-mcp -->
+  <rect x="820" y="205" width="215" height="60" rx="8" fill="url(#l2Node)" filter="url(#shadow)"/>
+  <text x="927" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🔧 nexent-mcp</text>
+  <text x="927" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#D1FAE5">端口 :5011/:5015 · MCP 服务</text>
+
+  <!-- nexent-northbound -->
+  <rect x="1075" y="205" width="215" height="60" rx="8" fill="url(#l2Node)" filter="url(#shadow)"/>
+  <text x="1182" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🌍 nexent-northbound</text>
+  <text x="1182" y="250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#D1FAE5">端口 :5013 · 外部 API</text>
+
+  <!-- L2 sub-row: Services detail -->
+  <rect x="55" y="275" width="215" height="55" rx="6" fill="url(#subNode)" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="162" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#047857">文档处理</text>
+  <text x="162" y="312" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">解析 · 分块 · 嵌入 · 索引</text>
+
+  <rect x="310" y="275" width="215" height="55" rx="6" fill="url(#subNode)" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="417" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#047857">配置与管理</text>
+  <text x="417" y="312" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">智能体 · 模型 · 工具 · 用户</text>
+
+  <rect x="565" y="275" width="215" height="55" rx="6" fill="url(#subNode)" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="672" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#047857">智能体运行时引擎</text>
+  <text x="672" y="312" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">对话 · 记忆 · 流式 · 技能</text>
+
+  <rect x="820" y="275" width="215" height="55" rx="6" fill="url(#subNode)" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="927" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#047857">MCP 工具代理</text>
+  <text x="927" y="312" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">本地 · 远程 · OpenAPI 动态</text>
+
+  <rect x="1075" y="275" width="215" height="55" rx="6" fill="url(#subNode)" stroke="#A7F3D0" stroke-width="1"/>
+  <text x="1182" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#047857">合作伙伴集成</text>
+  <text x="1182" y="312" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">A2A 协议 · RESTful API</text>
+
+  <!-- L1→L2 connection arrows -->
+  <!-- Frontend → config, runtime, mcp -->
+  <line x1="640" y1="158" x2="417" y2="200" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <line x1="700" y1="158" x2="672" y2="200" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <line x1="760" y1="158" x2="927" y2="200" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- External → northbound -->
+  <line x1="1060" y1="158" x2="1182" y2="200" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 3: SDK / AGENT CORE -->
+  <!-- ============================================================ -->
+  <rect x="20" y="360" width="1460" height="165" rx="10" fill="url(#l3Bg)" stroke="#C4B5FD" stroke-width="1"/>
+  <rect x="20" y="360" width="8" height="165" rx="4" fill="url(#labelGrad3)"/>
+  <text x="42" y="447" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#5B21B6" transform="rotate(-90, 42, 447)">SDK / 智能体核心</text>
+
+  <!-- L3 Nodes -->
+  <!-- Built-in Tools -->
+  <rect x="55" y="380" width="210" height="60" rx="8" fill="url(#l3Node)" filter="url(#shadow)"/>
+  <text x="160" y="405" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🔨 内置工具</text>
+  <text x="160" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#EDE9FE">搜索 · 文件读写 · 终端 · SQL · 邮件</text>
+
+  <!-- Skills Engine -->
+  <rect x="295" y="380" width="210" height="60" rx="8" fill="url(#l3Node)" filter="url(#shadow)"/>
+  <text x="400" y="405" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">📝 技能引擎</text>
+  <text x="400" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#EDE9FE">YAML 技能配置 · 技能创建智能体</text>
+
+  <!-- NexentAgent (Core) -->
+  <rect x="535" y="380" width="270" height="60" rx="8" fill="url(#l3Node)" filter="url(#shadow)"/>
+  <text x="670" y="405" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🤖 NexentAgent / CoreAgent</text>
+  <text x="670" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#EDE9FE">smolagents CodeAgent · 推理 + 代码执行</text>
+
+  <!-- Memory Service -->
+  <rect x="835" y="380" width="210" height="60" rx="8" fill="url(#l3Node)" filter="url(#shadow)"/>
+  <text x="940" y="405" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🧠 记忆服务</text>
+  <text x="940" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#EDE9FE">双层架构：用户级 + 智能体级 · mem0ai</text>
+
+  <!-- MCP Tools -->
+  <rect x="1075" y="380" width="210" height="60" rx="8" fill="url(#l3Node)" filter="url(#shadow)"/>
+  <text x="1180" y="405" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🔌 MCP 工具</text>
+  <text x="1180" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#EDE9FE">本地挂载 · 远程代理 · OpenAPI</text>
+
+  <!-- L3 sub-row -->
+  <rect x="55" y="450" width="210" height="55" rx="6" fill="url(#subNode)" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="160" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9">20+ 工具实现</text>
+  <text x="160" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">Tavily · Exa · 知识库 · Dify · SQL</text>
+
+  <rect x="295" y="450" width="210" height="55" rx="6" fill="url(#subNode)" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9">零代码智能体创建</text>
+  <text x="400" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">自然语言描述 → YAML 技能 → 可运行</text>
+
+  <rect x="535" y="450" width="270" height="55" rx="6" fill="url(#subNode)" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="670" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9">智能体执行流水线</text>
+  <text x="670" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">工具收集 → 模型 → 记忆 → 流式输出</text>
+
+  <rect x="835" y="450" width="210" height="55" rx="6" fill="url(#subNode)" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="940" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9">记忆后端</text>
+  <text x="940" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">嵌入 · 向量搜索 · 摘要</text>
+
+  <rect x="1075" y="450" width="210" height="55" rx="6" fill="url(#subNode)" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="1180" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9">工具传输</text>
+  <text x="1180" y="488" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">SSE · HTTP · Stdio</text>
+
+  <!-- L2→L3 connections -->
+  <line x1="417" y1="340" x2="400" y2="375" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+  <line x1="672" y1="340" x2="670" y2="375" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+  <line x1="927" y1="340" x2="940" y2="375" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+  <line x1="927" y1="340" x2="1180" y2="375" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 4: EXTERNAL INTEGRATIONS -->
+  <!-- ============================================================ -->
+  <rect x="20" y="535" width="1460" height="130" rx="10" fill="url(#l4Bg)" stroke="#FCD34D" stroke-width="1"/>
+  <rect x="20" y="535" width="8" height="130" rx="4" fill="url(#labelGrad4)"/>
+  <text x="42" y="605" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#92400E" transform="rotate(-90, 42, 605)">外部集成</text>
+
+  <!-- L4 Nodes -->
+  <rect x="55" y="555" width="230" height="55" rx="8" fill="url(#l4Node)" filter="url(#shadow)"/>
+  <text x="170" y="578" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🧠 大模型提供商</text>
+  <text x="170" y="598" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#FEF3C7">OpenAI · 阿里百炼 · 硅基流动 · TokenPony</text>
+
+  <rect x="320" y="555" width="230" height="55" rx="8" fill="url(#l4Node)" filter="url(#shadow)"/>
+  <text x="435" y="578" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">📚 知识库集成</text>
+  <text x="435" y="598" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#FEF3C7">Dify · RAGFlow · iData · 浩天 · DataMate</text>
+
+  <rect x="585" y="555" width="230" height="55" rx="8" fill="url(#l4Node)" filter="url(#shadow)"/>
+  <text x="700" y="578" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🔐 OAuth 认证</text>
+  <text x="700" y="598" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#FEF3C7">Supabase Auth · JWT · OAuth2 流程</text>
+
+  <rect x="850" y="555" width="230" height="55" rx="8" fill="url(#l4Node)" filter="url(#shadow)"/>
+  <text x="965" y="578" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">🎙️ 语音识别/合成</text>
+  <text x="965" y="598" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#FEF3C7">阿里云 ASR · 火山引擎 TTS</text>
+
+  <rect x="1115" y="555" width="230" height="55" rx="8" fill="url(#l4Node)" filter="url(#shadow)"/>
+  <text x="1230" y="578" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#FFFFFF">📊 监控</text>
+  <text x="1230" y="598" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#FEF3C7">OpenTelemetry · Jaeger · Prometheus</text>
+
+  <!-- L4 detail row -->
+  <rect x="55" y="618" width="230" height="35" rx="6" fill="url(#subNode)" stroke="#FDE68A" stroke-width="1"/>
+  <text x="170" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">OpenAI 兼容 API 协议</text>
+
+  <rect x="320" y="618" width="230" height="35" rx="6" fill="url(#subNode)" stroke="#FDE68A" stroke-width="1"/>
+  <text x="435" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">外部知识库搜索</text>
+
+  <rect x="585" y="618" width="230" height="35" rx="6" fill="url(#subNode)" stroke="#FDE68A" stroke-width="1"/>
+  <text x="700" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">多租户用户认证</text>
+
+  <rect x="850" y="618" width="230" height="35" rx="6" fill="url(#subNode)" stroke="#FDE68A" stroke-width="1"/>
+  <text x="965" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">语音转文字 &amp; 文字转语音</text>
+
+  <rect x="1115" y="618" width="230" height="35" rx="6" fill="url(#subNode)" stroke="#FDE68A" stroke-width="1"/>
+  <text x="1230" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#64748B">分布式链路追踪 &amp; 指标</text>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 5: INFRASTRUCTURE / DATA TIER -->
+  <!-- ============================================================ -->
+  <rect x="20" y="675" width="1460" height="145" rx="10" fill="url(#l5Bg)" stroke="#A5B4FC" stroke-width="1"/>
+  <rect x="20" y="675" width="8" height="145" rx="4" fill="url(#labelGrad5)"/>
+  <text x="42" y="752" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#3730A3" transform="rotate(-90, 42, 752)">基础设施层</text>
+
+  <!-- L5 Nodes -->
+  <rect x="55" y="695" width="240" height="60" rx="8" fill="url(#l5Node)" filter="url(#shadow)"/>
+  <text x="175" y="718" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🐘 PostgreSQL</text>
+  <text x="175" y="740" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#E0E7FF">:5434 · 关系型数据 · SQLAlchemy ORM</text>
+
+  <rect x="330" y="695" width="240" height="60" rx="8" fill="url(#l5Node)" filter="url(#shadow)"/>
+  <text x="450" y="718" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">🔍 Elasticsearch</text>
+  <text x="450" y="740" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#E0E7FF">:9210 · 向量搜索 + 全文检索 + 日志</text>
+
+  <rect x="605" y="695" width="240" height="60" rx="8" fill="url(#l5Node)" filter="url(#shadow)"/>
+  <text x="725" y="718" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">⚡ Redis</text>
+  <text x="725" y="740" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#E0E7FF">:6379 · 缓存 · 会话 · 队列</text>
+
+  <rect x="880" y="695" width="240" height="60" rx="8" fill="url(#l5Node)" filter="url(#shadow)"/>
+  <text x="1000" y="718" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">📦 MinIO</text>
+  <text x="1000" y="740" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#E0E7FF">:9010 · S3 对象存储 · 文件</text>
+
+  <rect x="1155" y="695" width="240" height="60" rx="8" fill="url(#l5Node)" filter="url(#shadow)"/>
+  <text x="1275" y="718" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">💻 OpenSSH Server</text>
+  <text x="1275" y="740" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#E0E7FF">:2222 · 终端沙箱</text>
+
+  <!-- L5 detail row -->
+  <rect x="55" y="765" width="240" height="40" rx="6" fill="url(#subNode)" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="175" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#4338CA">智能体 · 用户 · 租户 · 对话</text>
+  <text x="175" y="797" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#64748B">模型 · 工具 · 技能 · 记忆</text>
+
+  <rect x="330" y="765" width="240" height="40" rx="6" fill="url(#subNode)" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="450" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#4338CA">向量嵌入 · 语义搜索</text>
+  <text x="450" y="797" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#64748B">应用日志 · 全文索引</text>
+
+  <rect x="605" y="765" width="240" height="40" rx="6" fill="url(#subNode)" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="725" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#4338CA">会话状态 · 限流</text>
+  <text x="725" y="797" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#64748B">任务队列 · 发布订阅</text>
+
+  <rect x="880" y="765" width="240" height="40" rx="6" fill="url(#subNode)" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="1000" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#4338CA">文件上传 · 知识库文档</text>
+  <text x="1000" y="797" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#64748B">智能体产物 · 导出数据</text>
+
+  <rect x="1155" y="765" width="240" height="40" rx="6" fill="url(#subNode)" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="1275" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#4338CA">智能体代码执行沙箱</text>
+  <text x="1275" y="797" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#64748B">隔离终端环境</text>
+
+  <!-- Connection arrows L3→L4 -->
+  <line x1="670" y1="530" x2="700" y2="550" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAmber)"/>
+  <line x1="1180" y1="530" x2="965" y2="550" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAmber)"/>
+
+  <!-- Connection arrows L4→L5 -->
+  <line x1="435" y1="670" x2="450" y2="690" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowIndigo)"/>
+
+  <!-- ============================================================ -->
+  <!-- LEGEND -->
+  <!-- ============================================================ -->
+  <rect x="20" y="840" width="1460" height="90" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="50" y="868" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1E293B">图例</text>
+
+  <!-- Layer color swatches -->
+  <rect x="50" y="882" width="16" height="16" rx="3" fill="#3B82F6"/>
+  <text x="74" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">接入层</text>
+
+  <rect x="175" y="882" width="16" height="16" rx="3" fill="#10B981"/>
+  <text x="199" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">微服务层</text>
+
+  <rect x="310" y="882" width="16" height="16" rx="3" fill="#8B5CF6"/>
+  <text x="334" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">SDK / 智能体核心</text>
+
+  <rect x="465" y="882" width="16" height="16" rx="3" fill="#F59E0B"/>
+  <text x="489" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">外部集成</text>
+
+  <rect x="630" y="882" width="16" height="16" rx="3" fill="#6366F1"/>
+  <text x="654" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">基础设施层</text>
+
+  <!-- Arrow legend -->
+  <line x1="790" y1="890" x2="830" y2="890" stroke="#64748B" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGray)"/>
+  <text x="840" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">数据流 / API 调用</text>
+
+  <!-- Container legend -->
+  <rect x="1020" y="882" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1"/>
+  <text x="1044" y="895" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#475569">功能说明</text>
+
+  <!-- Right-side branding -->
+  <text x="1460" y="920" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#94A3B8">Nexent 平台 · v2.1 · 系统架构总览</text>
+
+  <!-- ============================================================ -->
+  <!-- SIDEBAR: VERTICAL LAYER INDICATORS -->
+  <!-- ============================================================ -->
+
+  <!-- Side arrows between layer labels -->
+  <line x1="24" y1="175" x2="24" y2="182" stroke="#64748B" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <line x1="24" y1="350" x2="24" y2="357" stroke="#64748B" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <line x1="24" y1="525" x2="24" y2="532" stroke="#64748B" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <line x1="24" y1="665" x2="24" y2="672" stroke="#64748B" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- ============================================================ -->
+  <!-- CONTAINER ORCHESTRATION NOTE -->
+  <!-- ============================================================ -->
+  <rect x="500" y="945" width="500" height="28" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="750" y="964" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#64748B">所有服务通过 Docker Compose + Kubernetes Helm Charts 编排 · 共享桥接网络: nexent_network</text>
+</svg>

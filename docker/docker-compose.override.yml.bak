@@ -1,0 +1,33 @@
+services:
+  nexent-web:
+    image: node:20-alpine
+    container_name: nexent-web
+    restart: always
+    networks:
+      - nexent
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../frontend:/opt/frontend
+      - /opt/frontend/node_modules
+    working_dir: /opt/frontend
+    environment:
+      - NODE_ENV=development
+      - HTTP_BACKEND=http://nexent-config:5010
+      - WS_BACKEND=ws://nexent-runtime:5014
+      - RUNTIME_HTTP_BACKEND=http://nexent-runtime:5014
+      - MINIO_ENDPOINT=http://nexent-minio:9000
+      - MARKET_BACKEND=http://60.204.251.153:8010
+      - MODEL_ENGINE_ENABLED=${MODEL_ENGINE_ENABLED:-false}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command: >
+      sh -c "
+        corepack enable &&
+        corepack prepare pnpm@10 --activate &&
+        pnpm install &&
+        pnpm dev
+      "

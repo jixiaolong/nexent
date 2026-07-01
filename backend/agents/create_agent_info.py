@@ -505,7 +505,7 @@ async def create_tool_config_list(agent_id, tenant_id, user_id, version_no: int 
                     f"No embedding model found for index '{index_names[0]}'. "
                     f"Please configure an embedding model for this knowledge base.")
             tool_config.metadata["embedding_model"] = embedding_model
-        elif tool_config.class_name in ["DifySearchTool", "DataMateSearchTool"]:
+        elif tool_config.class_name in ["DifySearchTool", "DataMateSearchTool", "RAGFlowSearchTool"]:
             rerank = param_dict.get("rerank", False)
             rerank_model_name = param_dict.get("rerank_model_name", "")
             rerank_model = None

@@ -58,6 +58,8 @@ function getKnowledgeBaseSourcesForTool(
       return ["datamate"];
     case "idata_search":
       return ["idata"];
+    case "ragflow_search":
+      return ["ragflow"];
     default:
       return ["nexent"];
   }
@@ -528,6 +530,7 @@ export default function KnowledgeBaseSelectorModal({
       knowledge_base_search: t("toolConfig.knowledgeBaseSelector.title.local"),
       dify_search: t("toolConfig.knowledgeBaseSelector.title.dify"),
       datamate_search: t("toolConfig.knowledgeBaseSelector.title.datamate"),
+      ragflow_search: t("toolConfig.knowledgeBaseSelector.title.ragflow"),
     };
     return (
       titles[toolType] || t("toolConfig.knowledgeBaseSelector.title.default")

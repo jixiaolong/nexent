@@ -745,6 +745,7 @@ def _validate_local_tool(
             rerank = instantiation_params.get("rerank", False)
             rerank_model_name = instantiation_params.get("rerank_model_name", "")
             rerank_model = None
+
             if rerank and rerank_model_name:
                 rerank_model = get_rerank_model(tenant_id=tenant_id, model_name=rerank_model_name)
 
@@ -753,6 +754,12 @@ def _validate_local_tool(
                 'rerank_model': rerank_model,
             }
             tool_instance = tool_class(**params)
+        elif tool_name == "ragflow_search":
+            # RAGFlowSearchTool does not accept rerank/rerank_model_name params
+            # RAGFlow handles reranking internally via its API
+            filtered_params = {k: v for k, v in instantiation_params.items()
+                               if k not in ["rerank_model", "rerank", "rerank_model_name"]}
+            tool_instance = tool_class(**filtered_params)
         elif tool_name == "haotian_search":
             # Haotian uses reranking_enable/reranking_model_name (not rerank/rerank_model_name)
             # Must explicitly pass observer=None: if omitted, Python applies the FieldInfo default
@@ -881,6 +888,8 @@ async def validate_tool_impl(
             else:
                 return await _validate_mcp_tool_remote(tool_name, inputs, usage, tenant_id)
         elif source == ToolSourceEnum.LOCAL.value:
+            logger.info(f"Validating local tool: {tool_name} {params}")
+
             return _validate_local_tool(tool_name, inputs, params, tenant_id, user_id)
         elif source == ToolSourceEnum.LANGCHAIN.value:
             return _validate_langchain_tool(tool_name, inputs)

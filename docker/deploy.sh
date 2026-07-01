@@ -141,15 +141,23 @@ collect_ports_from_env_file() {
     return 0
   fi
 
-  # 1) Address-style values containing :PORT (for example http://host:3000)
-  #    We only care about the numeric port part.
+  # 1) Address-style values containing host:port (for example http://host:3000)
+  #    Only collect ports that are externally accessible (localhost, IP, or real domain).
+  #    Docker internal hostnames like "nexent-minio" or "redis" are skipped because
+  #    they only communicate inside the Docker network and don't occupy host ports.
   while IFS= read -r match; do
-    local port="${match#:}"
+    local host="${match%:*}"
+    local port="${match##*:}"
     port=$(echo "$port" | tr -d '[:space:]')
-    if [[ "$port" =~ ^[0-9]{2,5}$ ]]; then
-      add_port_if_new "$port" "$env_file (address)"
+    if [[ ! "$port" =~ ^[0-9]{2,5}$ ]]; then
+      continue
     fi
-  done < <(grep -Eo ':[0-9]{2,5}' "$env_file" 2>/dev/null | sort -u)
+    # Skip Docker internal service names: single-word (no dots) and not localhost
+    if [[ "$host" != "localhost" && "$host" != *.* ]]; then
+      continue
+    fi
+    add_port_if_new "$port" "$env_file (external address)"
+  done < <(grep -Eo '[a-zA-Z0-9][a-zA-Z0-9.-]*:[0-9]{2,5}' "$env_file" 2>/dev/null | sort -u)
 
   # 2) Variables that explicitly define a port, for example FOO_PORT=3000
   while IFS= read -r line; do
