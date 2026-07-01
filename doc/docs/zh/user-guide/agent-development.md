@@ -55,7 +55,7 @@ Nexent 支持通过 A2A 协议与第三方 Agent 进行通信。您可以通过�
 如果您知道目标 Agent 的 Agent Card 地址，可以使用 URL 发现方式：
 
 <div style="display: flex; justify-content: left;">
-  <img src="./assets/agent-development/a2a-url-discovery.jpg" style="width: 50%; height: auto;" />
+  <img src="./assets/agent-development/a2a-url-discovery.jpg" style="width: 80%; height: auto;" />
 </div>
 
 1. 在外部 A2A Agent 列表中，点击"添加外部 Agent"按钮
@@ -72,7 +72,7 @@ Nexent 支持通过 A2A 协议与第三方 Agent 进行通信。您可以通过�
 如果您的 Agent 注册在 Nacos 服务发现平台，可以使用 Nacos 发现方式：
 
 <div style="display: flex; justify-content: left;">
-  <img src="./assets/agent-development/a2a-nacos-discovery.jpg" style="width: 50%; height: auto;" />
+  <img src="./assets/agent-development/a2a-nacos-discovery.jpg" style="width: 80%; height: auto;" />
 </div>
 
 1. 在外部 A2A Agent 列表中，点击"添加外部 Agent"按钮
@@ -96,7 +96,7 @@ Nexent 支持通过 A2A 协议与第三方 Agent 进行通信。您可以通过�
 
 
 <div style="display: flex; justify-content: left;">
-  <img src="./assets/agent-development/a2a-discovery-list.jpg" style="width: 50%; height: auto;" />
+  <img src="./assets/agent-development/a2a-discovery-list.jpg" style="width: 80%; height: auto;" />
 </div>
 
 1. **查看 Agent 详情**：点击 Agent 卡片，可以查看其完整信息，包括名称、描述、URL、能力列表等
@@ -112,6 +112,17 @@ Nexent 支持通过 A2A 协议与第三方 Agent 进行通信。您可以通过�
 > - 通过 URL 发现快速接入已知的第三方 Agent 服务
 > - 通过 Nacos 发现批量接入同一服务注册中心的所有 Agent
 > - 配置协议以兼容不同 Agent 服务提供商的要求
+
+
+###### 通过URL对接[DataAgent](https://gitcode.com/datagallery/dataagent) A2A Agent
+1. 参考[DataAgent文档](https://gitcode.com/datagallery/dataagent#%F0%9F%8C%90-a2a-10-%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%BC%8F)以A2A服务模式启动DataAgent
+   >当前Nexent不支持带认证的agent，启动DataAgent时请勿设置auth-token
+<div style="display: flex; justify-content: left;">
+  <img src="./assets/agent-development/dataagent_deploy.png" style="width: 80%; height: auto;" />
+</div>
+
+2. 参考[通过 URL 发现 Agent](#通过-url-发现-agent)接入agent，url为http://\<IP\>:9999/.well-known/agent-card.json
+3. 参考[管理已发现的外部 Agent](#管理已发现的外部-agent)配置调用协议，选择HTTP+JSON方式接入
 
 ### 🛠️ 选择智能体的工具
 

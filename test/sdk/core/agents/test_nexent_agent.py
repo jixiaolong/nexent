@@ -470,6 +470,9 @@ def test_create_model_success(nexent_agent_with_models, mock_model_config):
         top_p=mock_model_config.top_p,
         ssl_verify=True,
         display_name=mock_model_config.cite_name,
+        extra_body=mock_model_config.extra_body,
+        max_tokens=mock_model_config.max_tokens,
+        timeout_seconds=mock_model_config.timeout_seconds,
     )
 
     # Verify stop_event was set
@@ -499,6 +502,9 @@ def test_create_model_deep_thinking_success(nexent_agent_with_models, mock_deep_
         top_p=mock_deep_thinking_model_config.top_p,
         ssl_verify=True,
         display_name=mock_deep_thinking_model_config.cite_name,
+        extra_body=mock_deep_thinking_model_config.extra_body,
+        max_tokens=mock_deep_thinking_model_config.max_tokens,
+        timeout_seconds=mock_deep_thinking_model_config.timeout_seconds,
     )
 
     # Verify stop_event was set
@@ -933,6 +939,88 @@ def test_create_local_tool_knowledge_base_with_display_name_map(nexent_agent_ins
     assert result.rerank_model == "mock_rerank_model"
 
 
+def test_create_local_tool_knowledge_base_with_document_paths_from_metadata(nexent_agent_instance):
+    """KnowledgeBaseSearchTool should receive document_paths from metadata via set_document_paths.
+
+    The `document_paths` parameter is declared with `exclude=True` so it must not
+    be passed to __init__. Instead it must be forwarded to `set_document_paths`
+    on the instance, sourced from `tool_config.metadata`. This guards against
+    the FieldInfo-iteration regression reported when document_paths is unset.
+    """
+    mock_kb_tool_class = MagicMock()
+    mock_kb_tool_instance = MagicMock()
+    mock_kb_tool_class.return_value = mock_kb_tool_instance
+
+    document_paths = ["s3://bucket/doc1.txt", "s3://bucket/doc2.txt"]
+
+    tool_config = ToolConfig(
+        class_name="KnowledgeBaseSearchTool",
+        name="knowledge_base_search",
+        description="desc",
+        inputs="{}",
+        output_type="string",
+        params={"top_k": 5, "index_names": ["kb1"]},
+        source="local",
+        metadata={
+            "vdb_core": "mock_vdb_core",
+            "embedding_model": "mock_embedding_model",
+            "document_paths": document_paths,
+        },
+    )
+
+    original_value = nexent_agent.__dict__.get("KnowledgeBaseSearchTool")
+    nexent_agent.__dict__["KnowledgeBaseSearchTool"] = mock_kb_tool_class
+
+    try:
+        nexent_agent_instance.create_local_tool(tool_config)
+    finally:
+        if original_value is not None:
+            nexent_agent.__dict__["KnowledgeBaseSearchTool"] = original_value
+        elif "KnowledgeBaseSearchTool" in nexent_agent.__dict__:
+            del nexent_agent.__dict__["KnowledgeBaseSearchTool"]
+
+    # document_paths is excluded and must not be forwarded to __init__.
+    init_kwargs = mock_kb_tool_class.call_args.kwargs
+    assert "document_paths" not in init_kwargs
+    # It must instead be applied via set_document_paths on the instance.
+    mock_kb_tool_instance.set_document_paths.assert_called_once_with(document_paths)
+
+
+def test_create_local_tool_knowledge_base_without_metadata_calls_set_document_paths_none(nexent_agent_instance):
+    """When metadata lacks document_paths, set_document_paths(None) must still be invoked.
+
+    Ensures the tool's internal filter is explicitly reset to None rather than
+    left as a stale FieldInfo default from the smolagents wrapper.
+    """
+    mock_kb_tool_class = MagicMock()
+    mock_kb_tool_instance = MagicMock()
+    mock_kb_tool_class.return_value = mock_kb_tool_instance
+
+    tool_config = ToolConfig(
+        class_name="KnowledgeBaseSearchTool",
+        name="knowledge_base_search",
+        description="desc",
+        inputs="{}",
+        output_type="string",
+        params={"top_k": 5, "index_names": ["kb1"]},
+        source="local",
+        metadata=None,
+    )
+
+    original_value = nexent_agent.__dict__.get("KnowledgeBaseSearchTool")
+    nexent_agent.__dict__["KnowledgeBaseSearchTool"] = mock_kb_tool_class
+
+    try:
+        nexent_agent_instance.create_local_tool(tool_config)
+    finally:
+        if original_value is not None:
+            nexent_agent.__dict__["KnowledgeBaseSearchTool"] = original_value
+        elif "KnowledgeBaseSearchTool" in nexent_agent.__dict__:
+            del nexent_agent.__dict__["KnowledgeBaseSearchTool"]
+
+    mock_kb_tool_instance.set_document_paths.assert_called_once_with(None)
+
+
 def test_create_local_tool_knowledge_base_with_empty_display_name_map(nexent_agent_instance):
     """Test KnowledgeBaseSearchTool creation handles empty display_name_to_index_map."""
     mock_kb_tool_class = MagicMock()
@@ -1310,6 +1398,50 @@ def test_agent_run_with_observer_success_with_agent_text(nexent_agent_instance, 
         "", ProcessType.TOKEN_COUNT, ANY)
     mock_core_agent.observer.add_message.assert_any_call(
         "test_agent", ProcessType.FINAL_ANSWER, " content")
+
+
+def test_agent_run_with_observer_writes_aggregate_context_metrics(nexent_agent_instance, mock_core_agent):
+    """Agent run completion writes aggregate context metrics to the top-level span."""
+    class _SpanContext:
+        def __enter__(self):
+            return MagicMock()
+
+        def __exit__(self, exc_type, exc, tb):
+            return False
+
+    monitoring_manager = MagicMock()
+    monitoring_manager.start_agent_run.side_effect = lambda metadata: _SpanContext()
+    monitoring_manager.trace_agent_step.side_effect = lambda *args, **kwargs: _SpanContext()
+
+    nexent_agent_instance.agent = mock_core_agent
+    nexent_agent_instance._log_step_metrics = MagicMock()
+    mock_core_agent.stop_event.is_set.return_value = False
+    mock_core_agent.step_metrics = [
+        {
+            "main_llm": {"input_tokens": 100, "output_tokens": 12},
+            "compression": {"calls": 1, "input_tokens": 80, "output_tokens": 40, "cache_hits": 1},
+            "memory_state": {"estimated_input_tokens": 55, "estimated_output_tokens": 8},
+            "uncompressed_mem_est_input": 110,
+            "compression_ratio": 50.0,
+            "cache_hit": True,
+        }
+    ]
+
+    mock_action_step = MagicMock(spec=ActionStep)
+    mock_action_step.timing = MagicMock()
+    mock_action_step.timing.duration = 1.5
+    mock_action_step.step_number = 1
+    mock_action_step.error = None
+    mock_action_step.output = "Final answer"
+    mock_core_agent.run.return_value = [mock_action_step]
+
+    with patch.object(nexent_agent, "get_monitoring_manager", return_value=monitoring_manager), \
+            patch("builtins.print") as mock_print:
+        nexent_agent_instance.agent_run_with_observer("test query")
+
+    monitoring_manager.set_agent_context_metrics.assert_called_once_with(mock_core_agent.step_metrics)
+    monitoring_manager.set_openinference_output.assert_any_call("Final answer")
+    mock_print.assert_not_called()
 
 
 def test_agent_run_with_observer_success_with_string_final_answer(nexent_agent_instance, mock_core_agent):
@@ -2425,6 +2557,52 @@ class TestCreateLocalToolAnalyze:
         call_kwargs = mock_tool_class.call_args[1]
         assert call_kwargs["observer"] == nexent_agent_instance.observer
         assert call_kwargs["vlm_model"] == ["gpt-4-vision"]
+        assert call_kwargs["storage_client"] == "storage"
+        assert call_kwargs["param1"] == "value1"
+        assert result == mock_tool_instance
+
+    @pytest.mark.parametrize(
+        "class_name,tool_name",
+        [
+            ("AnalyzeAudioTool", "analyze_audio"),
+            ("AnalyzeVideoTool", "analyze_video"),
+        ],
+    )
+    def test_create_local_tool_analyze_audio_video(self, nexent_agent_instance, class_name, tool_name):
+        """Test successful audio/video analysis tool creation."""
+        mock_tool_class = MagicMock()
+        mock_tool_instance = MagicMock()
+        mock_tool_class.return_value = mock_tool_instance
+
+        tool_config = ToolConfig(
+            class_name=class_name,
+            name=tool_name,
+            description="desc",
+            inputs="{}",
+            output_type="string",
+            params={"param1": "value1"},
+            source="local",
+            metadata={
+                "vlm_model": ["video-understanding-model"],
+                "storage_client": "storage"
+            }
+        )
+
+        original_value = nexent_agent.__dict__.get(class_name)
+        nexent_agent.__dict__[class_name] = mock_tool_class
+
+        try:
+            result = nexent_agent_instance.create_local_tool(tool_config)
+        finally:
+            if original_value is not None:
+                nexent_agent.__dict__[class_name] = original_value
+            elif class_name in nexent_agent.__dict__:
+                del nexent_agent.__dict__[class_name]
+
+        mock_tool_class.assert_called_once()
+        call_kwargs = mock_tool_class.call_args[1]
+        assert call_kwargs["observer"] == nexent_agent_instance.observer
+        assert call_kwargs["vlm_model"] == ["video-understanding-model"]
         assert call_kwargs["storage_client"] == "storage"
         assert call_kwargs["param1"] == "value1"
         assert result == mock_tool_instance
